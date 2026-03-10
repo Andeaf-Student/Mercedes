@@ -3,7 +3,7 @@
 ## Funcționalități principale
 
 ### Autentificare utilizatori
-Accesul în aplicație este restricționat și se realizează pe baza unor date de autentificare (**username** și **parolă**) furnizate fiecărui angajat al reprezentanței.
+Accesul în aplicație este restricționat și se realizează pe baza unor date de autentificare (**username** și **parolă**) furnizate fiecărui client.
 
 ### Vizualizarea stocului de mașini
 Aplicația afișează o listă completă cu toate autoturismele disponibile în reprezentanță, incluzând informații precum:
