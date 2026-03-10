@@ -1,0 +1,1 @@
+﻿Masina m = new Masina();
