@@ -24,9 +24,9 @@
         Pret = pret;
         Disponibil = disponibil;
     }
-    public Masina() 
+    public Masina()
     {
-    
+
     }
 
     public void Citire()
@@ -45,3 +45,6 @@
         Console.Write("Kilometri: ");
         Kilometri = int.Parse(Console.ReadLine());
     }
+
+
+}
