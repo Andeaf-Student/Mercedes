@@ -28,4 +28,20 @@
     {
     
     }
-}
+
+    public void Citire()
+    {
+        Console.WriteLine("Introdu detaliile masinii:");
+        Console.Write("Model: ");
+        Model = Console.ReadLine();
+        Console.Write("An Fabricatie: ");
+        AnFabricatie = int.Parse(Console.ReadLine());
+        Console.Write("Tip Motorizare: ");
+        TipMotorizare = Console.ReadLine();
+        Console.Write("Capacitate Cilindrica (cc): ");
+        CapacitateCilindrica = int.Parse(Console.ReadLine());
+        Console.Write("Cai Putere (CP): ");
+        CaiPutere = int.Parse(Console.ReadLine());
+        Console.Write("Kilometri: ");
+        Kilometri = int.Parse(Console.ReadLine());
+    }
