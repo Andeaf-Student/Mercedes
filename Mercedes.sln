@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdministratorEntitateMemorie", "AdministratorEntitateMemorie\AdministratorEntitateMemorie.csproj", "{B97602C2-251A-43C4-AEBD-F6158A065BA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NivelStocareDate", "NivelStocareDate\NivelStocareDate.csproj", "{F8F5054E-7F20-4608-BCA2-84888A8B5FBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B97602C2-251A-43C4-AEBD-F6158A065BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B97602C2-251A-43C4-AEBD-F6158A065BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B97602C2-251A-43C4-AEBD-F6158A065BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8F5054E-7F20-4608-BCA2-84888A8B5FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F5054E-7F20-4608-BCA2-84888A8B5FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F5054E-7F20-4608-BCA2-84888A8B5FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F5054E-7F20-4608-BCA2-84888A8B5FBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

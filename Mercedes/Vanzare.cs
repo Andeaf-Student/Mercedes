@@ -1,4 +1,5 @@
 ﻿using System;
+using LibrarieModele;
 public class Vanzare
 {
     public Client Client { get; set; }
