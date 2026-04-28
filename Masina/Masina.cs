@@ -52,7 +52,7 @@ namespace LibrarieModele
             Transmisie = date[6];
             Pret = double.Parse(date[7]);
             Disponibil = bool.Parse(date[8]);
-            CuloareMasina = Enum.Parse<Culoare>(date[9]);
+            CuloareMasina = (Culoare)Enum.Parse(typeof(Culoare), date[9]);
 
             Optiuni = new List<Obtiuni>();
             if (date.Length > 10 && date[10] != "NicioOptiune")

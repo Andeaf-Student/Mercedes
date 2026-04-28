@@ -1,10 +1,2 @@
 Mercedes C-Class;2022;benzina;1999;204;15000;automata;35000;true;Negru
-Mercedes E-Class;2021;diesel;1991;194;30000;automata;40000;true;Alb
-Mercedes A-Class;2020;benzina;1598;136;25000;manuala;27000;true;Rosu
-Mercedes GLA;2021;benzina;1991;163;20000;automata;33000;true;Albastru
-Mercedes GLC;2022;diesel;1950;194;12000;automata;47000;true;Gri
-Mercedes S-Class;2022;benzina;2996;333;10000;automata;95000;true;Argintiu
-Mercedes CLA;2020;benzina;1332;136;35000;manuala;28000;true;Negru
-Mercedes B-Class;2021;diesel;1595;116;22000;automata;25000;true;Alb
-Mercedes GLE;2022;diesel;2925;330;15000;automata;85000;true;Rosu
-Mercedes EQC;2022;electric;0;408;5000;automata;70000;true;Albastru
+
