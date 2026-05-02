@@ -1,4 +1,4 @@
-using LibrarieModele;
+﻿using LibrarieModele;
 using NivelStocareDate;
 using System;
 using System.Collections.Generic;
@@ -82,7 +82,6 @@ class Program
 
                     fisier.AddMasina(masinaNoua);
                     index++;
-                    Console.WriteLine("Masina salvata!");
                     break;
 
                 case "5":

@@ -27,25 +27,15 @@ namespace NivelStocareDate
         public List<Masina> GetMasini()
         {
             List<Masina> masini = new List<Masina>();
-
             using (StreamReader sr = new StreamReader(numeFisier))
             {
                 string linie;
-
                 while ((linie = sr.ReadLine()) != null)
                 {
-                    if (string.IsNullOrWhiteSpace(linie))
-                        continue;
-
-                    string[] date = linie.Split(';');
-
-                    if (date.Length < 10)
-                        continue;
-
+                    if (string.IsNullOrWhiteSpace(linie)) continue;
                     masini.Add(new Masina(linie));
                 }
             }
-
             return masini;
         }
     }
