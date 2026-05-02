@@ -20,7 +20,7 @@ namespace NivelStocareDate
         {
             using (StreamWriter sw = new StreamWriter(numeFisier, true))
             {
-                sw.Write(masina.ConversieLaSirPentruFisier() + Environment.NewLine);
+                sw.WriteLine(masina.ConversieLaSirPentruFisier());
             }
         }
 
