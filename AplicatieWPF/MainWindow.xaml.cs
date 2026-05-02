@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
@@ -21,6 +21,105 @@ namespace AplicatieWPF
                 AppDomain.CurrentDomain.BaseDirectory, "Masini.txt");
 
             IncarcaComboBoxuri();
+        }
+
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            StartContent.Visibility = Visibility.Collapsed;
+            MenuContent.Visibility = Visibility.Visible;
+        }
+
+        private void BtnShowList_Click(object sender, RoutedEventArgs e)
+        {
+            MenuContent.Visibility = Visibility.Collapsed;
+            ListContent.Visibility = Visibility.Visible;
+        }
+
+        private void BtnShowAdd_Click(object sender, RoutedEventArgs e)
+        {
+            MenuContent.Visibility = Visibility.Collapsed;
+            AddContent.Visibility = Visibility.Visible;
+        }
+
+        private void BtnBackToMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ListContent.Visibility = Visibility.Collapsed;
+            AddContent.Visibility = Visibility.Collapsed;
+            BuyContent.Visibility = Visibility.Collapsed;
+            MenuContent.Visibility = Visibility.Visible;
+            TxtMesajVanzare.Text = "";
+        }
+
+        private void BtnShowBuy_Click(object sender, RoutedEventArgs e)
+        {
+            MenuContent.Visibility = Visibility.Collapsed;
+            BuyContent.Visibility = Visibility.Visible;
+            IncarcaMasiniInStoc();
+        }
+
+        private void IncarcaMasiniInStoc()
+        {
+            AdministrareMasiniFisierText fisier = new AdministrareMasiniFisierText(caleFisier);
+            masini = fisier.GetMasini();
+
+            ListaMasiniStoc.Items.Clear();
+            foreach (var m in masini)
+            {
+                if (m.Disponibil)
+                {
+                    ListaMasiniStoc.Items.Add(m.Model + " - " + m.Pret + " EUR");
+                }
+            }
+            BtnConfirmaAchizitia.IsEnabled = false;
+            TxtDetaliiCumparare.Text = "Selectează o mașină pentru a vedea detaliile...";
+        }
+
+        private void ListaMasiniStoc_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (ListaMasiniStoc.SelectedIndex != -1 && ListaMasiniStoc.SelectedItem != null)
+            {
+                string selectie = ListaMasiniStoc.SelectedItem.ToString();
+                
+                // Folosim LastIndexOf pentru a separa modelul de preț, 
+                // astfel încât modelele cu cratimă (ex: A-Class) să fie identificate corect
+                int lastDashIndex = selectie.LastIndexOf('-');
+                if (lastDashIndex != -1)
+                {
+                    string modelStr = selectie.Substring(0, lastDashIndex).Trim();
+                    
+                    var masina = masini.Find(m => m.Model == modelStr && m.Disponibil);
+                    if (masina != null)
+                    {
+                        TxtDetaliiCumparare.Text = masina.Info();
+                        BtnConfirmaAchizitia.IsEnabled = true;
+                    }
+                }
+            }
+        }
+
+        private void BtnConfirmaAchizitia_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListaMasiniStoc.SelectedIndex != -1 && ListaMasiniStoc.SelectedItem != null)
+            {
+                string selectie = ListaMasiniStoc.SelectedItem.ToString();
+                int lastDashIndex = selectie.LastIndexOf('-');
+                if (lastDashIndex != -1)
+                {
+                    string modelStr = selectie.Substring(0, lastDashIndex).Trim();
+
+                    var masina = masini.Find(m => m.Model == modelStr && m.Disponibil);
+                    if (masina != null)
+                    {
+                        masina.Disponibil = false; // Marcam ca vanduta
+
+                        AdministrareMasiniFisierText fisier = new AdministrareMasiniFisierText(caleFisier);
+                        fisier.SalveazaMasini(masini);
+
+                        TxtMesajVanzare.Text = $"Felicitări! Ați cumpărat modelul {masina.Model}.";
+                        IncarcaMasiniInStoc(); // Refresh lista
+                    }
+                }
+            }
         }
 
         // Populează ComboBox-ul de culori și ListBox-ul de opțiuni la pornire

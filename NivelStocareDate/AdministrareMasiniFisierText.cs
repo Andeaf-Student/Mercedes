@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using LibrarieModele;
@@ -39,6 +39,16 @@ namespace NivelStocareDate
                 }
             }
             return masini;
+        }
+        public void SalveazaMasini(List<Masina> masini)
+        {
+            using (StreamWriter sw = new StreamWriter(numeFisier, false))
+            {
+                foreach (var masina in masini)
+                {
+                    sw.WriteLine(masina.ConversieLaSirPentruFisier());
+                }
+            }
         }
     }
 }

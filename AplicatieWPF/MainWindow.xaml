@@ -1,81 +1,231 @@
-﻿<Window x:Class="AplicatieWPF.MainWindow"
+<Window x:Class="AplicatieWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Mercedes - Reprezentanță" Height="700" Width="550">
-    <ScrollViewer>
-        <StackPanel Margin="10">
-
-            <!-- Lista mașini existente -->
-            <Button Content="Încarcă lista mașini"
-                    Height="30"
-                    Click="BtnListaMasini_Click"/>
-            <ListBox x:Name="ListaMasini"
-                     Height="150"
-                     Margin="0,10,0,10"/>
-            <TextBox x:Name="TxtIndex"
-                     Height="25"
-                     ToolTip="Numărul mașinii pentru detalii"/>
-            <Button Content="Afișează detalii"
-                    Height="30"
-                    Margin="0,5,0,10"
-                    Click="BtnDetalii_Click"/>
-            <TextBlock x:Name="TxtDetalii"
-                       TextWrapping="Wrap"
-                       Margin="0,0,0,15"/>
-
-            <Separator/>
-
-            <!-- Formular adăugare mașină nouă -->
-            <TextBlock Text="Adaugă mașină nouă"
-                       FontWeight="Bold"
-                       FontSize="14"
-                       Margin="0,10,0,10"/>
-
-            <TextBlock Text="Model:"/>
-            <TextBox x:Name="TxtModel" Height="25" Margin="0,0,0,5"/>
-
-            <TextBlock Text="An Fabricație:"/>
-            <TextBox x:Name="TxtAnFabricatie" Height="25" Margin="0,0,0,5"/>
-
-            <TextBlock Text="Tip Motorizare:"/>
-            <TextBox x:Name="TxtTipMotorizare" Height="25" Margin="0,0,0,5"/>
-
-            <TextBlock Text="Capacitate Cilindrică (cc):"/>
-            <TextBox x:Name="TxtCapacitate" Height="25" Margin="0,0,0,5"/>
-
-            <TextBlock Text="Cai Putere (CP):"/>
-            <TextBox x:Name="TxtCaiPutere" Height="25" Margin="0,0,0,5"/>
-
-            <TextBlock Text="Kilometri:"/>
-            <TextBox x:Name="TxtKilometri" Height="25" Margin="0,0,0,5"/>
-
-            <TextBlock Text="Transmisie:"/>
-            <TextBox x:Name="TxtTransmisie" Height="25" Margin="0,0,0,5"/>
-
-            <TextBlock Text="Preț (EUR):"/>
-            <TextBox x:Name="TxtPret" Height="25" Margin="0,0,0,5"/>
-
-            <TextBlock Text="Culoare:"/>
-            <ComboBox x:Name="CmbCuloare" Height="25" Margin="0,0,0,5"/>
-
-            <TextBlock Text="Opțiuni extra:"/>
-            <ListBox x:Name="LstOptiuni"
-                     Height="100"
-                     SelectionMode="Multiple"
-                     Margin="0,0,0,10"/>
-
-            <Button Content="Salvează mașina"
-                    Height="35"
-                    Background="#1a1a2e"
-                    Foreground="White"
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#E3F2FD" Offset="0"/>
+            <GradientStop Color="#BBDEFB" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <!-- 1. Ecran de Start -->
+        <StackPanel x:Name="StartContent" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Reprezentanță Mercedes-Benz" 
+                       FontSize="28" 
+                       FontWeight="Bold" 
+                       Foreground="#1a1a2e" 
+                       Margin="0,0,0,30"
+                       HorizontalAlignment="Center"/>
+            
+            <Button Content="Start" 
+                    Width="200" 
+                    Height="60" 
+                    FontSize="22" 
                     FontWeight="Bold"
-                    Click="BtnSalveaza_Click"/>
-
-            <TextBlock x:Name="TxtMesaj"
-                       Margin="0,10,0,0"
-                       Foreground="Green"
-                       TextWrapping="Wrap"/>
-
+                    Background="#1a1a2e" 
+                    Foreground="White"
+                    Click="BtnStart_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
-    </ScrollViewer>
+
+        <!-- 2. Meniu Principal -->
+        <StackPanel x:Name="MenuContent" 
+                    Visibility="Collapsed" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Meniu Principal" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       Foreground="#1a1a2e" 
+                       Margin="0,0,0,30"
+                       HorizontalAlignment="Center"/>
+
+            <Button Content="Lista de mașini" 
+                    Width="250" 
+                    Height="50" 
+                    FontSize="18" 
+                    Margin="0,0,0,15"
+                    Background="#1a1a2e" 
+                    Foreground="White"
+                    Click="BtnShowList_Click">
+                <Button.Resources>
+                    <Style TargetType="Border"><Setter Property="CornerRadius" Value="10"/></Style>
+                </Button.Resources>
+            </Button>
+
+            <Button Content="Adaugă mașină" 
+                    Width="250" 
+                    Height="50" 
+                    FontSize="18" 
+                    Margin="0,0,0,15"
+                    Background="#1a1a2e" 
+                    Foreground="White"
+                    Click="BtnShowAdd_Click">
+                <Button.Resources>
+                    <Style TargetType="Border"><Setter Property="CornerRadius" Value="10"/></Style>
+                </Button.Resources>
+            </Button>
+
+            <Button Content="Cumpără mașină" 
+                    Width="250" 
+                    Height="50" 
+                    FontSize="18" 
+                    Background="#1a1a2e" 
+                    Foreground="White"
+                    Click="BtnShowBuy_Click">
+                <Button.Resources>
+                    <Style TargetType="Border"><Setter Property="CornerRadius" Value="10"/></Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+
+        <!-- 3. Pagina: Lista Mașini -->
+        <ScrollViewer x:Name="ListContent" Visibility="Collapsed">
+            <StackPanel Margin="15">
+                <Button Content="← Înapoi la meniu" 
+                        HorizontalAlignment="Left" 
+                        Width="120" 
+                        Margin="0,0,0,15"
+                        Click="BtnBackToMenu_Click"/>
+
+                <TextBlock Text="Toate Mașinile" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                
+                <Button Content="Încarcă lista completă"
+                        Height="30"
+                        Click="BtnListaMasini_Click"/>
+                <ListBox x:Name="ListaMasini"
+                         Height="200"
+                         Margin="0,10,0,10"/>
+                <TextBox x:Name="TxtIndex"
+                         Height="25"
+                         ToolTip="Numărul mașinii pentru detalii"/>
+                <Button Content="Afișează detalii"
+                        Height="30"
+                        Margin="0,5,0,10"
+                        Click="BtnDetalii_Click"/>
+                <TextBlock x:Name="TxtDetalii"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,15"
+                           FontSize="14"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- 4. Pagina: Adaugă Mașină -->
+        <ScrollViewer x:Name="AddContent" Visibility="Collapsed">
+            <StackPanel Margin="15">
+                <Button Content="← Înapoi la meniu" 
+                        HorizontalAlignment="Left" 
+                        Width="120" 
+                        Margin="0,0,0,15"
+                        Click="BtnBackToMenu_Click"/>
+
+                <TextBlock Text="Adaugă mașină nouă" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Model:"/>
+                <TextBox x:Name="TxtModel" Height="25" Margin="0,0,0,5"/>
+
+                <TextBlock Text="An Fabricație:"/>
+                <TextBox x:Name="TxtAnFabricatie" Height="25" Margin="0,0,0,5"/>
+
+                <TextBlock Text="Tip Motorizare:"/>
+                <TextBox x:Name="TxtTipMotorizare" Height="25" Margin="0,0,0,5"/>
+
+                <TextBlock Text="Capacitate Cilindrică (cc):"/>
+                <TextBox x:Name="TxtCapacitate" Height="25" Margin="0,0,0,5"/>
+
+                <TextBlock Text="Cai Putere (CP):"/>
+                <TextBox x:Name="TxtCaiPutere" Height="25" Margin="0,0,0,5"/>
+
+                <TextBlock Text="Kilometri:"/>
+                <TextBox x:Name="TxtKilometri" Height="25" Margin="0,0,0,5"/>
+
+                <TextBlock Text="Transmisie:"/>
+                <TextBox x:Name="TxtTransmisie" Height="25" Margin="0,0,0,5"/>
+
+                <TextBlock Text="Preț (EUR):"/>
+                <TextBox x:Name="TxtPret" Height="25" Margin="0,0,0,5"/>
+
+                <TextBlock Text="Culoare:"/>
+                <ComboBox x:Name="CmbCuloare" Height="25" Margin="0,0,0,5"/>
+
+                <TextBlock Text="Opțiuni extra:"/>
+                <ListBox x:Name="LstOptiuni"
+                         Height="100"
+                         SelectionMode="Multiple"
+                         Margin="0,0,0,10"/>
+
+                <Button Content="Salvează mașina"
+                        Height="40"
+                        Background="#1a1a2e"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Click="BtnSalveaza_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border"><Setter Property="CornerRadius" Value="8"/></Style>
+                    </Button.Resources>
+                </Button>
+
+                <TextBlock x:Name="TxtMesaj"
+                           Margin="0,10,0,0"
+                           Foreground="Green"
+                           TextWrapping="Wrap"
+                           FontWeight="Bold"/>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- 5. Pagina: Cumpără Mașină (Vânzare) -->
+        <ScrollViewer x:Name="BuyContent" Visibility="Collapsed">
+            <StackPanel Margin="15">
+                <Button Content="← Înapoi la meniu" 
+                        HorizontalAlignment="Left" 
+                        Width="120" 
+                        Margin="0,0,0,15"
+                        Click="BtnBackToMenu_Click"/>
+
+                <TextBlock Text="Mașini Disponibile în Stoc" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                <ListBox x:Name="ListaMasiniStoc"
+                         Height="200"
+                         Margin="0,0,0,10"
+                         SelectionChanged="ListaMasiniStoc_SelectionChanged"/>
+
+                <TextBlock Text="Detalii mașină selectată:" FontWeight="Bold" Margin="0,5,0,5"/>
+                <Border BorderBrush="#1a1a2e" BorderThickness="1" CornerRadius="5" Padding="10" Background="White" Margin="0,0,0,15">
+                    <TextBlock x:Name="TxtDetaliiCumparare"
+                               TextWrapping="Wrap"
+                               FontSize="14"
+                               Text="Selectează o mașină pentru a vedea detaliile..."/>
+                </Border>
+
+                <Button x:Name="BtnConfirmaAchizitia"
+                        Content="Confirmă achiziția"
+                        Height="45"
+                        Background="Green"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        IsEnabled="False"
+                        Click="BtnConfirmaAchizitia_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border"><Setter Property="CornerRadius" Value="10"/></Style>
+                    </Button.Resources>
+                </Button>
+
+                <TextBlock x:Name="TxtMesajVanzare"
+                           Margin="0,10,0,0"
+                           Foreground="Blue"
+                           TextWrapping="Wrap"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Window>
