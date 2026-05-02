@@ -79,11 +79,9 @@ class Program
                     Masina masinaNoua = new Masina();
                     masinaNoua.Citire();
                     masini.Add(masinaNoua);
-                    index++;
 
-                    // Salvam imediat in fisier
                     fisier.AddMasina(masinaNoua);
-                    Console.WriteLine("Masina a fost salvata in fisier.");
+                    index++;
                     break;
 
                 case "5":
