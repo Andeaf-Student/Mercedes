@@ -157,10 +157,16 @@
                 <ComboBox x:Name="CmbCuloare" Height="25" Margin="0,0,0,5"/>
 
                 <TextBlock Text="Opțiuni extra:"/>
-                <ListBox x:Name="LstOptiuni"
-                         Height="100"
-                         SelectionMode="Multiple"
-                         Margin="0,0,0,10"/>
+                <GroupBox Margin="0,0,0,10">
+                    <StackPanel x:Name="pnlOptiuni">
+                        <CheckBox Content="GPS" Margin="5" Checked="Optiune_CheckedChanged" Unchecked="Optiune_CheckedChanged"/>
+                        <CheckBox Content="ScauneIncalzite" Margin="5" Checked="Optiune_CheckedChanged" Unchecked="Optiune_CheckedChanged"/>
+                        <CheckBox Content="Trapa" Margin="5" Checked="Optiune_CheckedChanged" Unchecked="Optiune_CheckedChanged"/>
+                        <CheckBox Content="SenzoriParcare" Margin="5" Checked="Optiune_CheckedChanged" Unchecked="Optiune_CheckedChanged"/>
+                        <CheckBox Content="CameraMarsarier" Margin="5" Checked="Optiune_CheckedChanged" Unchecked="Optiune_CheckedChanged"/>
+                    </StackPanel>
+                </GroupBox>
+
 
                 <Button Content="Salvează mașina"
                         Height="40"

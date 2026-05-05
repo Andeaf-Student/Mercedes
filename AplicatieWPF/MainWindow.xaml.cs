@@ -11,12 +11,12 @@ namespace AplicatieWPF
     {
         private List<Masina> masini = new List<Masina>();
         private string caleFisier;
+        private List<Masina.Obtiuni> optiuniSelectate = new List<Masina.Obtiuni>();
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // Fișierul stă lângă executabil
             caleFisier = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory, "Masini.txt");
 
@@ -80,8 +80,7 @@ namespace AplicatieWPF
             {
                 string selectie = ListaMasiniStoc.SelectedItem.ToString();
                 
-                // Folosim LastIndexOf pentru a separa modelul de preț, 
-                // astfel încât modelele cu cratimă (ex: A-Class) să fie identificate corect
+                
                 int lastDashIndex = selectie.LastIndexOf('-');
                 if (lastDashIndex != -1)
                 {
@@ -110,19 +109,19 @@ namespace AplicatieWPF
                     var masina = masini.Find(m => m.Model == modelStr && m.Disponibil);
                     if (masina != null)
                     {
-                        masina.Disponibil = false; // Marcam ca vanduta
+                        masina.Disponibil = false; 
 
                         AdministrareMasiniFisierText fisier = new AdministrareMasiniFisierText(caleFisier);
                         fisier.SalveazaMasini(masini);
 
                         TxtMesajVanzare.Text = $"Felicitări! Ați cumpărat modelul {masina.Model}.";
-                        IncarcaMasiniInStoc(); // Refresh lista
+                        IncarcaMasiniInStoc(); 
                     }
                 }
             }
         }
 
-        // Populează ComboBox-ul de culori și ListBox-ul de opțiuni la pornire
+        
         private void IncarcaComboBoxuri()
         {
             // Culori
@@ -131,11 +130,25 @@ namespace AplicatieWPF
                 CmbCuloare.Items.Add(c);
             }
             CmbCuloare.SelectedIndex = 0;
+        }
 
-            // Opțiuni extra
-            foreach (Masina.Obtiuni o in Enum.GetValues(typeof(Masina.Obtiuni)))
+        private void Optiune_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.CheckBox cb = sender as System.Windows.Controls.CheckBox;
+            if (cb == null) return;
+
+            string optiuneStr = cb.Content.ToString();
+            if (Enum.TryParse<Masina.Obtiuni>(optiuneStr, out Masina.Obtiuni optiune))
             {
-                LstOptiuni.Items.Add(o);
+                if (cb.IsChecked == true)
+                {
+                    if (!optiuniSelectate.Contains(optiune))
+                        optiuniSelectate.Add(optiune);
+                }
+                else
+                {
+                    optiuniSelectate.Remove(optiune);
+                }
             }
         }
 
@@ -216,13 +229,13 @@ namespace AplicatieWPF
                 CuloareMasina = (Masina.Culoare)CmbCuloare.SelectedItem
             };
 
-            // Adaugă opțiunile selectate din ListBox
-            foreach (Masina.Obtiuni optiune in LstOptiuni.SelectedItems)
+            
+            foreach (var optiune in optiuniSelectate)
             {
                 masinaNoua.Optiuni.Add(optiune);
             }
 
-            // Salvează în fișier
+            
             try
             {
                 AdministrareMasiniFisierText fisier =
@@ -242,7 +255,7 @@ namespace AplicatieWPF
             }
         }
 
-        // Resetează câmpurile după salvare
+        
         private void CurataFormular()
         {
             TxtModel.Text = "";
@@ -254,7 +267,12 @@ namespace AplicatieWPF
             TxtTransmisie.Text = "";
             TxtPret.Text = "";
             CmbCuloare.SelectedIndex = 0;
-            LstOptiuni.SelectedItems.Clear();
+            foreach (var child in pnlOptiuni.Children)
+            {
+                if (child is System.Windows.Controls.CheckBox cb)
+                    cb.IsChecked = false;
+            }
+            optiuniSelectate.Clear();
         }
     }
 }
